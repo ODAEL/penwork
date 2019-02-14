@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\penwork;
+namespace Penwork;
 
 class QueryLogger
 {

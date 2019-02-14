@@ -1,8 +1,8 @@
 <?php
 
-namespace vendor\penwork\base;
+namespace Penwork\Base;
 
-use vendor\penwork\Router;
+use Penwork\Router;
 
 class View
 {

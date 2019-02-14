@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace vendor\penwork\base;
+namespace Penwork\base;
 
 abstract class ActionRequest
 {

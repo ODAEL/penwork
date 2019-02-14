@@ -1,8 +1,8 @@
 <?php
 
-namespace vendor\penwork\base;
+namespace Penwork\base;
 
-use vendor\penwork\Db;
+use Penwork\Db;
 
 abstract class Model
 {

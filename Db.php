@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\penwork;
+namespace Penwork;
 
 use function vendor\libs\debug;
 
