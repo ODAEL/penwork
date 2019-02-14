@@ -6,7 +6,7 @@
  * Time: 1:19
  */
 
-namespace vendor\libs;
+namespace Penwork\libs;
 
 
 class ArrayHelper

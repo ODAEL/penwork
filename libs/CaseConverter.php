@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\libs;
+namespace Penwork\libs;
 
 class CaseConverter
 {

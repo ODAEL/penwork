@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\penwork\base;
+namespace Penwork\base;
 
 class Validations
 {

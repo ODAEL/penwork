@@ -1,10 +1,10 @@
 <?php
 
-namespace vendor\penwork;
+namespace Penwork;
 
-use vendor\penwork\base\Controller;
-use vendor\libs\CaseConverter;
-use function vendor\libs\debug;
+use Penwork\base\Controller;
+use Penwork\libs\CaseConverter;
+use function Penwork\libs\debug;
 
 class Router
 {
