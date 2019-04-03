@@ -1,10 +1,7 @@
 <?php
+declare(strict_types=1);
 
 namespace Penwork;
-
-use Penwork\base\Controller;
-use Penwork\libs\CaseConverter;
-use function Penwork\libs\debug;
 
 class Router
 {

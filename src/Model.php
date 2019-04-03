@@ -1,8 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace Penwork\base;
-
-use Penwork\Db;
+namespace Penwork;
 
 abstract class Model
 {

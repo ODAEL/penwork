@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Penwork;
 
-use function Penwork\libs\debug;
+use PDO;
 
 class Db
 {
@@ -16,10 +17,10 @@ class Db
     {
         $dbConfig = require ROOT . '/config/db_config.php';
         $options = [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ];
-        $this->pdo = new \PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['pass'], $options);
+        $this->pdo = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['pass'], $options);
     }
 
     public static function instance(): self

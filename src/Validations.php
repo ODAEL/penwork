@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace Penwork\base;
+namespace Penwork;
 
 class Validations
 {
