@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace Penwork\libs;
+namespace Penwork\Helper;
 
 class CaseConverter
 {

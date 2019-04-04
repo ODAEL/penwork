@@ -57,7 +57,7 @@ class Db
 
     public function logSql(string $sql, bool $success): void
     {
-        $logger = QueryLogger::getLogger($this->pdo);
+        $logger = QueryLogger::getInstance($this->pdo);
 
         if (!$logger) {
             return;

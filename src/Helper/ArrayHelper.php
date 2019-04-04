@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: penko
- * Date: 26.08.2018
- * Time: 1:19
- */
+declare(strict_types=1);
 
-namespace Penwork\libs;
+namespace Penwork\Helper;
 
 
 class ArrayHelper

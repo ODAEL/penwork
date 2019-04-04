@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-abstract class Model
+abstract class AbstractModel
 {
     abstract protected static function getTableName(): string;
 

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-class View
+class View extends BaseObject
 {
     public $route;
     public $view;
@@ -12,7 +12,7 @@ class View
     public function __construct($route = null, $layout = null, $view = null)
     {
         $this->route = $route ?? Router::getRoute();
-        $this->layout = $layout ?? DEFAULT_LAYOUT;
+        $this->layout = $layout ?? self::getSystemConfigRequiredParams('layouts', 'default');
         $this->view = $view ?? $route['action'];
     }
 
@@ -23,17 +23,16 @@ class View
             return;
         }
 
-        $fileView = APP . "/views/{$this->route['controller']}/{$this->view}.php";
+        $fileView = self::getSystemConfigRequiredParams('dir', 'views') . "/{$this->route['controller']}/{$this->view}.php";
 
-        if (\is_array($params)) {
+        if (is_array($params)) {
             extract($params, EXTR_SKIP);
         }
-
-        $route = $this->route;
 
         ob_start();
 
         if (is_file($fileView)) {
+            /** @noinspection PhpIncludeInspection */
             require $fileView;
         } else {
             echo 'NOT FOUND VIEW ' . $fileView;
@@ -46,9 +45,10 @@ class View
             return;
         }
 
-        $fileLayout = APP . "/views/layouts/{$this->layout}.php";
+        $fileLayout = self::getSystemConfigRequiredParams('dir', 'layouts') . "/{$this->layout}.php";
 
         if (is_file($fileLayout)) {
+            /** @noinspection PhpIncludeInspection */
             require $fileLayout;
         } else {
             echo 'NOT FOUND LAYOUT ' . $fileLayout;

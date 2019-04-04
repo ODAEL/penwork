@@ -25,7 +25,7 @@ class QueryLogger
         $this->pdo = $pdo;
     }
 
-    public static function getLogger(\PDO $pdo): ?self
+    public static function getInstance(\PDO $pdo): ?self
     {
         if (self::$instance === null) {
             self::$instance = new self($pdo);
