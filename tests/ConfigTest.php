@@ -35,4 +35,31 @@ class ConfigTest extends TestCase
 
         self::assertEquals('key', $config->getParams('fake', 'params'));
     }
+
+    public function testGetUnknownParams(): void
+    {
+        $config = Config::getInstance();
+
+        $params = ['fake' => ['params' => 'key']];
+        $config->setParams($params);
+
+        self::assertNull($config->getParams('another', 'fake', 'params'));
+    }
+
+    public function testMergeParams(): void
+    {
+        $config = Config::getInstance();
+
+        $params = [
+            'fake' => ['params' => 'key']
+        ];
+        $config->setParams($params);
+
+        $paramsToMerge = [
+            'fake' => ['params' => ['new' => 'value']]
+        ];
+        $config->mergeParams($paramsToMerge);
+
+        self::assertEquals(['new' => 'value'], $config->getParams('fake', 'params'));
+    }
 }

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-class Router
+use Penwork\Helper\CaseConverter;
+
+class Router extends BaseObject
 {
 
     /** @var array $routes */
@@ -32,7 +34,7 @@ class Router
         foreach (self::$routes as $pattern => $route) {
             if (preg_match("#$pattern#", $url, $matches)) {
                 foreach ($matches as $key => $value) {
-                    if (\is_string($key)) {
+                    if (is_string($key)) {
                         switch ($key) {
 
                             case 'controller':
@@ -93,7 +95,7 @@ class Router
                 self::notFound();
             }
 
-            /** @var Controller $controllerObject */
+            /** @var AbstractController $controllerObject */
             $controllerObject->$actionName();
             $controllerObject->renderView();
         } else {
@@ -104,7 +106,8 @@ class Router
     public static function notFound(): void
     {
         http_response_code(404);
-        include ROOT . '/public/404.html';
+        /** @noinspection PhpIncludeInspection */
+        include self::getConfigParams('error_pages', '404') ?? __DIR__ . '../assets/404.html';
         die;
     }
 

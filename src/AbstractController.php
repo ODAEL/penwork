@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-abstract class Controller {
+abstract class AbstractController {
 
     public $route;
     public $layout;

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-abstract class ActionRequest
-{
-    /** @var array */
-    protected $_errors = [];
+use Penwork\Traits\ErrorTrait;
 
+abstract class AbstractActionRequest
+{
+    use ErrorTrait;
 
     public function __construct()
     {
@@ -21,25 +21,6 @@ abstract class ActionRequest
             $this->afterValidate();
         }
     }
-
-    abstract protected function afterValidate(): void;
-
-
-    protected function addError(string $error): void
-    {
-        $this->_errors[] = $error;
-    }
-
-    public function getErrors(): array
-    {
-        return $this->_errors;
-    }
-
-    public function hasErrors(): bool
-    {
-        return \count($this->_errors) !== 0;
-    }
-
 
     protected function getQueryParam(string $key, $default = null)
     {
@@ -116,6 +97,8 @@ abstract class ActionRequest
 
         return null;
     }
+
+    abstract protected function afterValidate(): void;
 
     abstract protected function init(): void;
 }

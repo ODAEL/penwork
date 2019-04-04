@@ -4,31 +4,26 @@ declare(strict_types=1);
 namespace Penwork;
 
 use PDO;
+use Penwork\Traits\SingletonTrait;
 
-class Db
+class Db extends BaseObject
 {
-    /** @var \PDO $pdo */
-    protected $pdo;
+    use SingletonTrait;
 
-    /** @var self $instance */
-    protected static $instance;
+    /** @var PDO $pdo */
+    protected $pdo;
 
     protected function __construct()
     {
-        $dbConfig = require ROOT . '/config/db_config.php';
+        $dbConfigDsn = self::getConfigRequiredParams('db', 'dsn');
+        $dbConfigUser = self::getConfigRequiredParams('db', 'user');
+        $dbConfigPass = self::getConfigRequiredParams('db', 'pass');
+
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ];
-        $this->pdo = new PDO($dbConfig['dsn'], $dbConfig['user'], $dbConfig['pass'], $options);
-    }
-
-    public static function instance(): self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
+        $this->pdo = new PDO($dbConfigDsn, $dbConfigUser, $dbConfigPass, $options);
     }
 
     public function execute(string $sql, array $params = []): bool
@@ -57,7 +52,7 @@ class Db
 
     public function logSql(string $sql, bool $success): void
     {
-        $logger = QueryLogger::getLogger($this->pdo);
+        $logger = self::getConfigParams('db', 'query_logger');
 
         if (!$logger) {
             return;

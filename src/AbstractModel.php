@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-abstract class Model
+abstract class AbstractModel
 {
     abstract protected static function getTableName(): string;
 
@@ -12,7 +12,7 @@ abstract class Model
 
     private static function getDbInstance(): Db
     {
-        return Db::instance();
+        return Db::getInstance();
     }
 
     protected static function execute(string $sql, array $params = []): bool

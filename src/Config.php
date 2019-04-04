@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace Penwork;
 
+use Penwork\Traits\SingletonTrait;
+use RuntimeException;
+
 final class Config
 {
-    /** @var static */
-    private static $instance;
+    use SingletonTrait;
+
+    public const KEY_SYSTEM = 'sys';
 
     /** @var array */
     private $params;
@@ -16,18 +20,14 @@ final class Config
         // Cannot be called outside
     }
 
-    public static function getInstance(): self
-    {
-        if (static::$instance === null) {
-            static::$instance = new static();
-        }
-
-        return static::$instance;
-    }
-
     public function setParams(array $params): void
     {
         $this->params = $params;
+    }
+
+    public function mergeParams(array $params): void
+    {
+        $this->params = array_merge($this->params, $params);
     }
 
     public function getParams(...$keys)
@@ -39,4 +39,14 @@ final class Config
         return $params;
     }
 
+    public function getRequiredParams(...$keys)
+    {
+        $params = $this->getParams($keys);
+
+        if ($params === null) {
+            throw new RuntimeException('Cannot find required params');
+        }
+
+        return $params;
+    }
 }
