@@ -7,11 +7,11 @@ class BaseObject
 {
     protected static function getConfigParams(string ...$keys)
     {
-        return Config::getInstance()->getParams($keys);
+        return Config::getInstance()->getParams(...$keys);
     }
 
     protected static function getConfigRequiredParams(string ...$keys)
     {
-        return Config::getInstance()->getRequiredParams($keys);
+        return Config::getInstance()->getRequiredParams(...$keys);
     }
 }
