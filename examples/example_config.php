@@ -6,6 +6,7 @@ Config::getInstance()->setParams([
     'dir' => [
         'root' => dirname('/'), // Required
         'vendor' => dirname('/vendor'), // Required
+        'controllers' => dirname('/controllers'), // Required
         'views' => dirname('/views'), // Required
         'layouts' => dirname('/layouts'), // Required
     ],
