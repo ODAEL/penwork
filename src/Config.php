@@ -41,7 +41,7 @@ final class Config
 
     public function getRequiredParams(...$keys)
     {
-        $params = $this->getParams($keys);
+        $params = $this->getParams(...$keys);
 
         if ($params === null) {
             throw new RuntimeException('Cannot find required params');
