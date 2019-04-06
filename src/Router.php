@@ -107,7 +107,7 @@ class Router extends BaseObject
     {
         http_response_code(404);
         /** @noinspection PhpIncludeInspection */
-        include self::getConfigParams('error_pages', '404') ?? __DIR__ . '../assets/404.html';
+        include self::getConfigParams('error_page', '404') ?? __DIR__ . '../assets/404.html';
         die;
     }
 

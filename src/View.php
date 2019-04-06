@@ -23,7 +23,7 @@ class View extends BaseObject
             return;
         }
 
-        $fileView = self::getConfigRequiredParams('dir', 'views') . "/{$this->route['controller']}/{$this->view}.php";
+        $fileView = self::getConfigRequiredParams('path', 'view') . "/{$this->route['controller']}/{$this->view}.php";
 
         if (is_array($params)) {
             extract($params, EXTR_SKIP);
@@ -45,7 +45,7 @@ class View extends BaseObject
             return;
         }
 
-        $fileLayout = self::getConfigRequiredParams('dir', 'layouts') . "/{$this->layout}.php";
+        $fileLayout = self::getConfigRequiredParams('path', 'layout') . "/{$this->layout}.php";
 
         if (is_file($fileLayout)) {
             /** @noinspection PhpIncludeInspection */
