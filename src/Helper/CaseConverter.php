@@ -27,7 +27,7 @@ class CaseConverter
 
             case self::LOWER_CAMEL_CASE:
                 preg_match('/([a-z]+)([A-Z][A-Z,a-z]*)?/', $string, $matches);
-                $rightSide = self::camelCaseDecode($matches[2], self::UPPER_CAMEL_CASE);
+                $rightSide = self::camelCaseDecode($matches[1], self::UPPER_CAMEL_CASE);
                 $result = array_merge([$matches[1]], $rightSide);
                 break;
 

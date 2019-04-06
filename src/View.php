@@ -12,7 +12,7 @@ class View extends BaseObject
     public function __construct($route = null, $layout = null, $view = null)
     {
         $this->route = $route ?? Router::getRoute();
-        $this->layout = $layout ?? self::getConfigRequiredParams('layouts', 'default');
+        $this->layout = $layout ?? self::getConfigRequiredParams('layout', 'default');
         $this->view = $view ?? $route['action'];
     }
 

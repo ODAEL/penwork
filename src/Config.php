@@ -44,7 +44,7 @@ final class Config
         $params = $this->getParams(...$keys);
 
         if ($params === null) {
-            throw new RuntimeException('Cannot find required params');
+            throw new RuntimeException('Cannot find required params ' . implode('->', $keys));
         }
 
         return $params;
