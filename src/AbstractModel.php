@@ -111,7 +111,7 @@ abstract class AbstractModel
 
         $conditions = [];
         foreach ($params as $field => $value) {
-            $saveValue = addslashes($value);
+            $saveValue = addslashes((string)$value);
             $conditions[] = "$field = '$saveValue'";
         }
         $conditionString = implode(' AND ', $conditions);
@@ -127,7 +127,7 @@ abstract class AbstractModel
 
         $fields = $values = [];
         foreach ($params as $field => $value) {
-            $safeValue = addslashes($value);
+            $safeValue = addslashes((string)$value);
             $fields[] = $field;
             $values[] = "'$safeValue'";
         }
