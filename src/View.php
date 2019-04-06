@@ -25,9 +25,12 @@ class View extends BaseObject
 
         $fileView = self::getConfigRequiredParams('path', 'view') . "/{$this->route['controller']}/{$this->view}.php";
 
-        if (is_array($params)) {
-            extract($params, EXTR_SKIP);
+        if (!is_array($params)) {
+            $params = [];
         }
+
+        $params = array_merge($params, ['route' => $this->route]);
+        extract($params, EXTR_SKIP);
 
         ob_start();
 
