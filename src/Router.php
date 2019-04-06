@@ -78,7 +78,7 @@ class Router extends BaseObject
         $url = self::removeQueryString($url);
         if (self::matchRoute($url)) {
 
-            $controllerName = self::getConfigRequiredParams('dir', 'controllers') . '/' . self::$route['controller'] . 'Controller';
+            $controllerName = self::getConfigRequiredParams('namespace', 'controller') . '\\' . self::$route['controller'] . 'Controller';
 
             $actionNameDecoded = CaseConverter::camelCaseDecode(self::$route['action']);
             $actionNameDecoded = array_merge(['action'], $actionNameDecoded);

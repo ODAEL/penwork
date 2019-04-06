@@ -3,17 +3,20 @@
 use Penwork\Config;
 
 Config::getInstance()->setParams([
-    'dir' => [
+    'path' => [
         'root' => dirname('/'), // Required
         'vendor' => dirname('/vendor'), // Required
         'controllers' => dirname('/controllers'), // Required
         'views' => dirname('/views'), // Required
         'layouts' => dirname('/layouts'), // Required
     ],
-    'error_pages' => [
+    'namespace' => [
+        'controller' => 'App\\Controller'
+    ],
+    'error_page' => [
         '404' => '/404.html',
     ],
-    'layouts' => [
+    'layout' => [
         'default' => '/layouts/default.php', // Required
     ],
     'db' => [
