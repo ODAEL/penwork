@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Penwork;
 
-use Penwork\Helper\CaseConverter;
+use CaseConverter\CaseConverter;
+use CaseConverter\ConcreteConverter\LowerCamelCaseConverter;
 
 class Router extends BaseObject
 {
@@ -63,14 +64,12 @@ class Router extends BaseObject
 
     protected static function matchControllerName($name): string
     {
-        $array = CaseConverter::snakeCaseDecode($name);
-        return CaseConverter::camelCaseEncode($array);
+        return CaseConverter::convertToUpperCamel($name);
     }
 
     protected static function matchActionName($name): string
     {
-        $array = CaseConverter::snakeCaseDecode($name);
-        return CaseConverter::camelCaseEncode($array, CaseConverter::LOWER_CAMEL_CASE);
+        return CaseConverter::convertToLowerCamel($name);
     }
 
     public static function dispatch($url): void
@@ -80,10 +79,9 @@ class Router extends BaseObject
 
             $controllerName = self::getConfigRequiredParams('namespace', 'controller') . '\\' . self::$route['controller'] . 'Controller';
 
-            $actionNameDecoded = CaseConverter::camelCaseDecode(self::$route['action']);
-            $actionNameDecoded = array_merge(['action'], $actionNameDecoded);
-
-            $actionName = CaseConverter::camelCaseEncode($actionNameDecoded, CaseConverter::LOWER_CAMEL_CASE);
+            $converter = new CaseConverter(self::$route['action']);
+            $converter->getPhraseHolder()->prependWord('action');
+            $actionName = $converter->convert(new LowerCamelCaseConverter());
 
             if (!class_exists($controllerName)) {
                 self::notFound();

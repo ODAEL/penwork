@@ -15,8 +15,15 @@
   "require": {
     "php": ">=7.1.0",
     "ext-pdo": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ODAEL/case-converter": "0.1.2"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ODAEL/case-converter"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Penwork\\": "src/",
@@ -24,6 +31,8 @@
     }
   },
   "require-dev": {
+    "roave/security-advisories": "dev-master"
+    ,
     "phpunit/phpunit": "^6"
   }
 }
